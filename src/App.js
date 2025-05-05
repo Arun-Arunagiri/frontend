@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/LoginPage';
+import Register from './pages/RegisterPage';
+import PredictionPage from './pages/PredictionPage';
+import Dashboard from './pages/Dashboard';
 
-function App() {
+const App = () => {
+  // const isAuthenticated = localStorage.getItem('authenticated') === 'true';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
+        {/* <Route
+          path="/predict"
+          element={isAuthenticated ? <PredictionPage /> : <Navigate to="/login" />}
+        /> */}
+        <Route path='/predict' element={<PredictionPage/>}></Route>
+      </Routes>
   );
-}
+};
 
 export default App;
